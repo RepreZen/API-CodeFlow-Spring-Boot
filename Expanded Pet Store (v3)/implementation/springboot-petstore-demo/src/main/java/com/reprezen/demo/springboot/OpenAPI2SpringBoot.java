@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.reprezen.demo.springboot", "com.reprezen.demo.springboot.api" , "com.reprezen.demo.springboot.swaggerui"})
+@ComponentScan(basePackages = { "com.reprezen.demo.springboot", "com.reprezen.demo.springboot.api" ,  "com.reprezen.demo.springboot.api.impl", "com.reprezen.demo.springboot.swaggerui"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     @Override
