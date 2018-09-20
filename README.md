@@ -22,12 +22,7 @@ Generate code and add customizations
 *	step_2a Generate code
 *	step_2b Add implementation to the code
 
-### Run locally
-Now you can run the API locally with this maven command:
-```
-mvn spring-boot:run
-```
-The API will be exposed at the following URI:  http://localhost:8080/api/pets/
+Now you can run the API locally as described above.
 
 ## Step 3: Iterate
 *	step_3a Add a new method to the OAS document
