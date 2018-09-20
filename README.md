@@ -11,13 +11,13 @@ To learn more about the Contract-as-Code approach, watch our presentation: [API 
 
 
 # Work in Progress
-## Step 1: Describe
+## Step 1: Design
 Describe your RESTful API
 *	step_1a Create "Expanded Pet Store" Project
 *	step_1b Add GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server"
 *	step_1c Modify output folder and packages in the *.gen file
 
-## Step 2: Generate
+## Step 2: Generate and Implement
 Generate code and add customizations
 *	step_2a Generate code
 *	step_2b Add implementation to the code
