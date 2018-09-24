@@ -4,10 +4,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "com.reprezen.demo.springboot", "com.reprezen.demo.springboot.api" , "com.reprezen.demo.springboot.swaggerui"})
+@ComponentScan(basePackages = {"com.reprezen.demo.springboot", "com.reprezen.demo.springboot.api" , "com.reprezen.demo.springboot.swaggerui"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     @Override
@@ -30,4 +34,18 @@ public class OpenAPI2SpringBoot implements CommandLineRunner {
         }
 
     }
+
+    @Bean
+    public WebMvcConfigurer webConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            /*@Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("*")
+                        .allowedHeaders("Content-Type");
+            }*/
+        };
+    }
+
 }

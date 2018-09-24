@@ -17,7 +17,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.ServletContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-09-20T14:14:53.886-04:00[America/New_York]")
 
 @Configuration
 @EnableSwagger2
@@ -41,9 +40,8 @@ public class OpenAPIDocumentationConfig {
                 .select()
                     .apis(RequestHandlerSelectors.basePackage("com.reprezen.demo.springboot.api"))
                     .build()
-                .pathProvider(new BasePathAwareRelativePathProvider(servletContext, basePath))
-                .directModelSubstitute(java.time.LocalDate.class, java.sql.Date.class)
-                .directModelSubstitute(java.time.OffsetDateTime.class, java.util.Date.class)
+                .directModelSubstitute(org.threeten.bp.LocalDate.class, java.sql.Date.class)
+                .directModelSubstitute(org.threeten.bp.OffsetDateTime.class, java.util.Date.class)
                 .apiInfo(apiInfo());
     }
 
