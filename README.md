@@ -1,5 +1,5 @@
 # API CodeFlow Spring Boot
-Creating a Spring Boot app from an OpenAPI3 document with [SpringCodegen](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/SpringCodegen.java)
+Creating a Spring Boot app from an OpenAPI3 document with [SpringCodegen](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/SpringCodegen.java)  using the [API CodeFlow approach](http://RZen.io/APICodeFlow).
 
 To run the code locally
 1. `git checkout final`
@@ -7,7 +7,6 @@ To run the code locally
 3. `mvn spring-boot:run`
 4. Access API at this URI:  http://localhost:8080/api/pets/
 
-To learn more about the Contract-as-Code approach, watch our presentation: [API Contract-As-Code: Rapid Development with OpenAPI](https://www.slideshare.net/TedEpstein/api-contractascode-rapid-development-with-openapi)
 
 
 # Work in Progress
