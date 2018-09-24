@@ -14,7 +14,7 @@ The resulting API will allow to add a new pet, update an existing pet, list all 
 3. `mvn spring-boot:run`
 You can now access API at this URI:  http://localhost:8080/api/pets/
 
-### To create a new pet:
+### POST to create a new pet
 Use the POST method. 
 Let's create Elya, the cat using this curl command:
 ```curl
@@ -31,14 +31,14 @@ curl --header "Content-Type: application/json" \
   http://localhost:8080/api/pets
 ```
 
-### To view all pets
+### GET to view all pets
 Use the GET method. You can view the pets created in previous steps by opening this URL in a browser: `http://localhost:8080/api/pets`
 
-### To view a particular pet
+### GET to view a particular pet
 Use the GET method on `http://localhost:8080/api/pets/{petId}` where `petId` is the ID of a pet, e.g. `http://localhost:8080/api/pets/0`.
 
-### To update an existing pet
-Use the PUT method:
+### PUT to update an existing pet
+Let's change the name of Elya, the cat, to Ella. In our API, her `petID` is `0`:
 ```curl
 curl --header "Content-Type: application/json" \
   --request PUT \
@@ -47,32 +47,48 @@ curl --header "Content-Type: application/json" \
 ```
 
 # Work in Progress
-# Instructions
-Start with the master branch.  
+# Instructions: How to create a working API for a PetStore uin three easy steps
+Start with the master branch.  It's empty.
 ## Step 1: Design your API in OpenAPI
 For simplicity, we use the already existing "Expanded Pet Store" example project.
 <TBD>
 
 You can skip this step by switching to the branch "step_1a": `git checkout step_1a`.
 
-## Step 2: Generate
-Generate code
-*	step_1b Add GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server"
-*	step_1c Modify output folder and packages in the *.gen file
-*	step_2a Generate code
+## Step 2: Generate Spring Boot code
+1. Add a new GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server". The result should be similar to what you can find on branch step_1b.
+2. Update pom.xml
+Modify .gen file
+step_1c Modify output folder and packages in the *.gen file
+3. Generate Spring Boot code running the "Generate Java Spring (Boot + MVC + CloudFeign) Server" action from the toolbar. Notice that we have `*Delegate` among other generated artifacts. We will provide implementation of this interface in the next step. You can see the result of codegen in the branch `step_2a`.
 
-You can skip this step by switching to the branch "step_2a": `git checkout step_2a`.
 
 ## Step 3: Implement
-*	step_2b Add implementation to the code
+Let's create the implementation of `Delegate`. For simplicity, I am using a simple HashMap instead of a database.
 
-Now you can run the API locally as described above.
+Update pom.xml
+The result of step 3 is on branch `step_2b`.
+
+Now, you can run the API locally using `mvn spring-boot:run`. You can create a new pet and view it, you can also view all pets. 
 
 
 ## Step 4: Repeat
-*	step_3a Add a new method to the OAS document
-*	step_3b Re-generate code
-*	step_3c Add missing implementation
+This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. We will follow the Design-Generate-Implement pattern.
+### Design
+To do it, simply paste this code to your ` ` file at the end of the `pets` pathItem:
+```yaml
+
+```
+step_3a
+### Generate code
+Run "Generate Java Spring (Boot + MVC + CloudFeign) Server".
+You can see also see the result by switching to `step_3b`
+
+### Implement
+We didn't have an implementation of the new PUT method yet. Fortunately, Java compiler will notify us about it. Let's add this implementation for `updatePet`:
+```java
+
+```	
+Or, `git checkout step_3c`
 
 
-*	...
