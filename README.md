@@ -38,10 +38,10 @@ Use the GET method. You can view the pets created in previous steps by opening t
 Use the GET method on `http://localhost:8080/api/pets/{petId}` where `petId` is the ID of a pet, e.g. `http://localhost:8080/api/pets/0`.
 
 ### To update an existing pet
-Use the POST method:
+Use the PUT method:
 ```curl
 curl --header "Content-Type: application/json" \
-  --request POST \
+  --request PUT \
   --data '{"tag": "cat", "name": "Ella"}' \
   http://localhost:8080/api/pets/0
 ```
