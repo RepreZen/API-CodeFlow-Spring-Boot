@@ -122,6 +122,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+                             
+    put: 
+      description: Update a pet based on the ID
+      operationId: updatePet
+      requestBody:
+        content: 
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/NewPet"
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet to fetch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: pet response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                      
 components:
   schemas:
     Pet:
