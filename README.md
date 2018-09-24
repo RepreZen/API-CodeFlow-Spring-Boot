@@ -1,4 +1,4 @@
-# Contract-as-Code Demo: OpenAPI3 -> Spring Boot
+# API CodeFlow Spring Boot
 Creating a Spring Boot app from an OpenAPI3 document with [SpringCodegen](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/SpringCodegen.java)
 
 To run the code locally
