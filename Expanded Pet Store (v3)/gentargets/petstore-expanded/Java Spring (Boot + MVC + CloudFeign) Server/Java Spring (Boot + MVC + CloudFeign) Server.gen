@@ -96,7 +96,7 @@ parameters:
   dateLibrary: null
   
   # Option. Use Java8 classes instead of third party equivalents
-  java8: true
+  java8: false
   
   # server title name or client service name
   title: null
@@ -108,7 +108,7 @@ parameters:
   basePackage: com.reprezen.demo.springboot
   
   # Whether to generate only API interface stubs without the server files.
-  interfaceOnly: true
+  interfaceOnly: false
   
   # Whether to generate the server files using the delegate pattern
   delegatePattern: true
@@ -149,7 +149,11 @@ parameters:
   # This parameter need not be used. If it is absent, all string-valued parameters are collected into
   # a map that is then passed to the OpenAPI Generator module. If a map is provided here, then string-valued
   # parameters are still copied in, overriding like-named values appearing in the map.
-  openApiCodegenConfig: null
+  openApiCodegenConfig: 
+    hideGenerationTimestamp: true
+    delegatePattern: true
+    # the java8 option generates default methods in interfaces which. Because of it, unimplemented methods in interface implementations will NOT be detected by the compiler.  
+    java8: false
   
   # System properties to set, as in the -D option of OpenAPI Generatorcommand line.
   # Each property should be a json object with a name/value pair for each property.

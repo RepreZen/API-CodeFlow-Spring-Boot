@@ -2,7 +2,6 @@ package com.reprezen.demo.springboot.api;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-09-20T14:14:53.886-04:00[America/New_York]")
 
 @javax.xml.bind.annotation.XmlRootElement
 public class ApiResponseMessage {
