@@ -38,4 +38,10 @@ public interface PetsApiDelegate {
     ResponseEntity<List<Pet>> findPets( List<String>  tags,
          Integer  limit);
 
+    /**
+     * @see PetsApi#updatePet
+     */
+    ResponseEntity<Pet> updatePet( Long  id,
+         NewPet  newPet);
+
 }

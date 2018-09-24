@@ -69,4 +69,15 @@ public interface PetsApi {
         method = RequestMethod.GET)
     ResponseEntity<List<Pet>> findPets(@ApiParam(value = "tags to filter by") @Valid @RequestParam(value = "tags", required = false) List<String> tags,@ApiParam(value = "maximum number of results to return") @Valid @RequestParam(value = "limit", required = false) Integer limit);
 
+
+    @ApiOperation(value = "", nickname = "updatePet", notes = "Update a pet based on the ID", response = Pet.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "pet response", response = Pet.class),
+        @ApiResponse(code = 200, message = "unexpected error", response = Error.class) })
+    @RequestMapping(value = "/pets/{id}",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PUT)
+    ResponseEntity<Pet> updatePet(@ApiParam(value = "ID of pet to fetch",required=true) @PathVariable("id") Long id,@ApiParam(value = ""  )  @Valid @RequestBody NewPet newPet);
+
 }
