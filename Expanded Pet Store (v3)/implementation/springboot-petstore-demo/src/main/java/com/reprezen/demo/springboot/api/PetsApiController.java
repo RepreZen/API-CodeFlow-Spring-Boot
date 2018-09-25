@@ -47,4 +47,8 @@ public class PetsApiController implements PetsApi {
         return delegate.findPets(tags, limit);
     }
 
+    public ResponseEntity<Pet> updatePet(@ApiParam(value = "ID of pet to fetch",required=true) @PathVariable("id") Long id,@ApiParam(value = ""  )  @Valid @RequestBody NewPet newPet) {
+        return delegate.updatePet(id, newPet);
+    }
+
 }

@@ -54,4 +54,13 @@ public class PetsApiDelegateImpl implements PetsApiDelegate {
 		return new ResponseEntity<>(filteredPets, HttpStatus.ACCEPTED);
 	}
 
+	@Override
+	public ResponseEntity<Pet> updatePet(Long id, NewPet newPet) {
+		if (!pets.containsKey(id)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		pets.get(id).name(newPet.getName()).tag(newPet.getTag());
+		return new ResponseEntity<>(pets.get(id), HttpStatus.ACCEPTED);
+	}
+
 }
