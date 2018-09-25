@@ -77,7 +77,7 @@ You can use
 
 ## Step 4: Repeat
 This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. 
-In addition to existing methods, you can use
+In addition to existing methods, you will be able to use
 * [PUT to update an existing pet](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#put-to-update-an-existing-pet)
 
 We will follow the same **Design-Generate-Implement** pattern in [Step 4: Repeat](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/5)
