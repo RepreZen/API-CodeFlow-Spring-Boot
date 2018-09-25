@@ -50,27 +50,22 @@ curl --header "Content-Type: application/json" \
 
 # Work in Progress
 # How to create a working API for a PetStore in three easy steps. 
-Start with the `start` branch (`git checkout start`).  It's empty.
+
+Note: Start with the `start` branch (`git checkout start`).  It's empty.
+I am using GutHub pull requests for every step so it's easier to view all the changes. Feel free to checkout to the corresponding branch directly.
+
 ## Step 1: Design your API in OpenAPI
 For simplicity, we use the already existing "Expanded Pet Store" example project.
-<TBD>
-
-You can skip this step by switching to the branch "step_1a": `git checkout step_1a`.
+Follow [Step 1: Design your API in OpenAPI](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/2)
 
 ## Step 2: Generate Spring Boot code
-1. Add a new GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server". The result should be similar to what you can find on branch step_1b.
-2. Update pom.xml
-Modify .gen file
-step_1c Modify output folder and packages in the *.gen file
-3. Generate Spring Boot code running the "Generate Java Spring (Boot + MVC + CloudFeign) Server" action from the toolbar. 
-Open the generated artifacts as a project by clicking on "Import > Maven / Existing Maven Project". This will create a new "petstore-demo" Maven project in API Studio.
-Notice that we have `PetsApiDelegate` among other generated artifacts. We will provide implementation of this interface in the next step. 
-
-You can see the result of codegen in the branch `step_2a`.
-
+Add a new GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server" and customize GenParameters in the `*.gen` file.
+Follow [Step 2: Generate Spring Boot code](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/3)
 
 ## Step 3: Implement
-Let's create the implementation of `PetsApiDelegate`. For simplicity, I am using a simple HashMap instead of a database.
+Implement `PetsApiDelegate`. 
+
+For simplicity, I am using a simple HashMap instead of a database.
 
 Update pom.xml
 The result of step 3 is on branch `step_2b`.
