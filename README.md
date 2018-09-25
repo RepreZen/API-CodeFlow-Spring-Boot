@@ -2,21 +2,23 @@
 Creating a Spring Boot app from an OpenAPI3 document with [SpringCodegen](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/SpringCodegen.java) using the [API CodeFlow approach](http://RZen.io/APICodeFlow).
 
 In this demo, we will implement an API for a PetStore using the API CodeFlow approach:
-1. Design your API in [OpenAPI](https://github.com/OAI/OpenAPI-Specification)
-2. Generate stub code for Spring Boot (Java)
-3. Implement the business logic
-The resulting API will allow to add a new pet, update an existing pet, list all pets or a view the pet for a given ID.
+1. **Design** your API in [OpenAPI](https://github.com/OAI/OpenAPI-Specification)
+2. **Generate** stub code for Spring Boot (Java)
+3. **Implement** the business logic
 
+The API will allow to add a new pet, update an existing pet, list all pets, or view the pet for a given ID.
 
-## To run the resulting implementation locally:
-1. `git checkout final`
-2. Navigate to the Spring Boot directory: `cd 'Expanded Pet Store (v3)/implementation/springboot-petstore-demo/'`
-3. `mvn spring-boot:run`
-You can now access API at this URI:  http://localhost:8080/api/pets/
+## To run the resulting implementation locally
+1. Navigate to the Spring Boot directory: `cd 'Expanded Pet Store (v3)/implementation/springboot-petstore-demo/'`
+2. `mvn spring-boot:run`
+
+You can now access the PetStore API at this URI:  http://localhost:8080/api/pets/
+
+<img width="287" alt="screen shot 2018-09-24 at 8 49 30 pm" src="https://user-images.githubusercontent.com/644582/45986765-81ea0080-c03b-11e8-8530-9036a3522e9f.png">
 
 ### POST to create a new pet
 Use the POST method. 
-Let's create Elya, the cat using this curl command:
+Let's create Elya, the cat, using this curl command:
 ```curl
 curl --header "Content-Type: application/json" \
   --request POST \
@@ -47,8 +49,8 @@ curl --header "Content-Type: application/json" \
 ```
 
 # Work in Progress
-# Instructions: How to create a working API for a PetStore uin three easy steps
-Start with the master branch.  It's empty.
+# How to create a working API for a PetStore in three easy steps. 
+Start with the `start` branch (`git checkout start`).  It's empty.
 ## Step 1: Design your API in OpenAPI
 For simplicity, we use the already existing "Expanded Pet Store" example project.
 <TBD>
