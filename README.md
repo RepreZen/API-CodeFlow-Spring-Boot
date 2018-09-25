@@ -60,11 +60,15 @@ You can skip this step by switching to the branch "step_1a": `git checkout step_
 2. Update pom.xml
 Modify .gen file
 step_1c Modify output folder and packages in the *.gen file
-3. Generate Spring Boot code running the "Generate Java Spring (Boot + MVC + CloudFeign) Server" action from the toolbar. Notice that we have `*Delegate` among other generated artifacts. We will provide implementation of this interface in the next step. You can see the result of codegen in the branch `step_2a`.
+3. Generate Spring Boot code running the "Generate Java Spring (Boot + MVC + CloudFeign) Server" action from the toolbar. 
+Open the generated artifacts as a project by clicking on "Import > Maven / Existing Maven Project". This will create a new "petstore-demo" Maven project in API Studio.
+Notice that we have `PetsApiDelegate` among other generated artifacts. We will provide implementation of this interface in the next step. 
+
+You can see the result of codegen in the branch `step_2a`.
 
 
 ## Step 3: Implement
-Let's create the implementation of `Delegate`. For simplicity, I am using a simple HashMap instead of a database.
+Let's create the implementation of `PetsApiDelegate`. For simplicity, I am using a simple HashMap instead of a database.
 
 Update pom.xml
 The result of step 3 is on branch `step_2b`.
@@ -75,7 +79,7 @@ Now, you can run the API locally using `mvn spring-boot:run`. You can create a n
 ## Step 4: Repeat
 This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. We will follow the Design-Generate-Implement pattern.
 ### Design
-To do it, simply paste this code to your ` ` file at the end of the `pets` pathItem:
+To do it, simply paste this code to your `petstore-expanded.yaml` file at the end of the `pets` pathItem:
 ```yaml
 
 ```
