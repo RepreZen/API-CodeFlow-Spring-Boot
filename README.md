@@ -48,7 +48,6 @@ curl --header "Content-Type: application/json" \
   http://localhost:8080/api/pets/0
 ```
 
-# Work in Progress
 # How to create a working API for a PetStore in three easy steps. 
 
 Note: Start with the `start` branch (`git checkout start`).  It's empty.
@@ -68,10 +67,17 @@ Follow [Step 2: Generate Spring Boot code](https://github.com/RepreZen/API-CodeF
 ## Step 3: Implement
 Implement `PetsApiDelegate`. Now, you can run the API locally using `mvn spring-boot:run`. 
 
+Now, you can use
+* [POST to create a new pet](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#post-to-create-a-new-pet)
+* [GET to view all pets](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#get-to-view-all-pets)
+* [GET to view an individual pet](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#get-to-view-a-particular-pet)
+
 Follow [Step 3: Implement](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/4)
 
 ## Step 4: Repeat
 This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. 
+In addition to existing methods, you can use
+* [PUT to update an existing pet](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#put-to-update-an-existing-pet)
 
 We will follow the same **Design-Generate-Implement** pattern in [Step 4: Repeat](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/5)
 
