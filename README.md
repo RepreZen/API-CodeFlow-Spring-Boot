@@ -65,14 +65,15 @@ Add a new GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server" and custo
 Follow [Step 2: Generate Spring Boot code](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/3)
 
 ## Step 3: Implement
-Implement `PetsApiDelegate`. Now, you can run the API locally using `mvn spring-boot:run`. 
+Implement `PetsApiDelegate`. Follow [Step 3: Implement](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/4)
 
-Now, you can use
+Now, you can run the API locally using `mvn spring-boot:run`. 
+You can use
 * [POST to create a new pet](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#post-to-create-a-new-pet)
 * [GET to view all pets](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#get-to-view-all-pets)
 * [GET to view an individual pet](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/blob/master/README.md#get-to-view-a-particular-pet)
 
-Follow [Step 3: Implement](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/4)
+
 
 ## Step 4: Repeat
 This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. 
