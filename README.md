@@ -52,44 +52,30 @@ curl --header "Content-Type: application/json" \
 # How to create a working API for a PetStore in three easy steps. 
 
 Note: Start with the `start` branch (`git checkout start`).  It's empty.
-I am using GutHub pull requests for every step so it's easier to view all the changes. Feel free to checkout to the corresponding branch directly.
+I am using GutHub pull requests for every step so it's easier to view all the changes. These pull requests are NOT intended to be merged. 
+Feel free to checkout to the corresponding PR branch directly.
 
 ## Step 1: Design your API in OpenAPI
 For simplicity, we use the already existing "Expanded Pet Store" example project.
+
 Follow [Step 1: Design your API in OpenAPI](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/2)
 
 ## Step 2: Generate Spring Boot code
 Add a new GenTarget for "Java Spring (Boot + MVC + CloudFeign) Server" and customize GenParameters in the `*.gen` file.
+
 Follow [Step 2: Generate Spring Boot code](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/3)
 
 ## Step 3: Implement
-Implement `PetsApiDelegate`. 
+Implement `PetsApiDelegate`. Now, you can run the API locally using `mvn spring-boot:run`. 
 
-For simplicity, I am using a simple HashMap instead of a database.
-
-Update pom.xml
-The result of step 3 is on branch `step_2b`.
-
-Now, you can run the API locally using `mvn spring-boot:run`. You can create a new pet and view it, you can also view all pets. 
-
+Follow [Step 3: Implement](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/4)
 
 ## Step 4: Repeat
-This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. We will follow the Design-Generate-Implement pattern.
-### Design
-To do it, simply paste this code to your `petstore-expanded.yaml` file at the end of the `pets` pathItem:
-```yaml
+This first version of our API works, but it doesn't allow us to update an existing pet. Let's fix it by adding a PUT method for an individual pet. 
 
-```
-step_3a
-### Generate code
-Run "Generate Java Spring (Boot + MVC + CloudFeign) Server".
-You can see also see the result by switching to `step_3b`
+We will follow the same **Design-Generate-Implement** pattern in [Step 4: Repeat](https://github.com/RepreZen/API-CodeFlow-Spring-Boot/pull/5)
 
-### Implement
-We didn't have an implementation of the new PUT method yet. Fortunately, Java compiler will notify us about it. Let's add this implementation for `updatePet`:
-```java
 
-```	
-Or, `git checkout step_3c`
+
 
 
