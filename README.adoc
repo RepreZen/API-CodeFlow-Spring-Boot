@@ -31,26 +31,8 @@ toc::[]
 
 === Overview
 
-The demo proceeds in four phases (plus some initial set-up). There are branches defined for each
-phase, which you can use to quickly bring your workspace up to that point of the demo, rather than
-manually working through each step.
+The demo proceeds in four phases (plus some initial set-up):
 
-[TIP]
-====
-If you have checked out a branch and then worked through some following steps manually, you will probably have files in your working tree that will block an attempt
-to simply check out the next branch. To proceed, clean out your working tree with:
-
-```
-git clean -fd
-```
-
-If you have also modified non-ignored files, you will also need to do this:
-
-```
-git reset . ; git checkout .
-```
-
-====
 
 The phases are:
 
@@ -64,7 +46,7 @@ using Spring Boot.
 
 3. **Implement** - Write your business logic into the generated stubs.
 
-4. Iterate (**Design** => **Generate** => **Implement**) in order to add a new method to the API
+4. Repeat (**Design** => **Generate** => **Implement**) in order to add a new method to the API
 
 So let's get going!
 
@@ -84,8 +66,6 @@ git clone git@github.com:RepreZen/API-CodeFlow-Node.js.git
 ```
 
 === Phase 1 - Design
-
-TIP: The end-state of this phase is captured in branch `02.petstore`.
 
 We won't actually design a model here. Instead, we'll just use one of the OpenApi3 models available from the API Studio Examples Wizard.
 
