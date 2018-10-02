@@ -64,26 +64,18 @@ We won't actually design a model here. Instead, we'll just use one of the OpenAp
 
 Follow these steps:
 
-[.float-group]
---
-[.right.thumb]
-image::examples-wizard.png[Open the Examples Wizard]
 1. Click on the drop-down arrow of the _New_ tool in the toolbar, just under the _File_ menu.
 
 2. Select _RepreZen Examples_ to open the Examples Wizard.
---
++
+image::examples-wizard.png[Open the Examples Wizard]
 
-[.float-group]
---
-[.right.thumb]
-image::petstore-example.png[Expanded Pet Store Example]
-[start=3]
 3. Click on the _OpenAPI v3_ tab.
 
 4. Select the _Expanded Pet Store (v3)_ example, and press _Finish_.
---
++
+image::petstore-example.png[Expanded Pet Store Example]
 
-[start=5]
 5. You should see a new project in your workspace, and the example model file itself will automatically open in an editor.
 
 6. Browse through the model briefly to familiarize yourself with its operations and other components.
@@ -100,10 +92,6 @@ Studio at the time of this writing. Steps 6-9 below accomplish this.
 
 Follow these steps:
 
-[.float-group]
---
-[.right.thumb]
-image::create-gentarget.png[Create GenTarget]
 
 1. In your model project, locate the `petstore-expanded.yaml` file in the `models` folder, and
 double-click on it.
@@ -113,19 +101,17 @@ button/menu.
 +
 TIP: If you do not see this in the toolbar, be sure that you are in the **RepreZen** perspective, by
 clicking on the appropriate button on the far right of the toolbar: image:reprezen-perspective.png[].
---
++
+image::create-gentarget.png[Create GenTarget]
 
-[.float-group]
---
-[.right.thumb]
-image::select-gentemplate.png[]
-[start=3]
 3. Type "spring" in the resulting dialog's search box, and you should see the **Java Spring
 (Boot...)** GenTemplate in the list.
 
 4. Select the **Java Spring** GenTemplate and press _Finish_. A new GenTarget is created in your
 project, and the `.gen` file that describes it opens in an editor.
---
++
+image::select-gentemplate.png[]
+
 
 [start=5]
 5. Modify the new `.gen` file (which should be showing now in your active editor) as shown in the
@@ -171,46 +157,31 @@ of the value.
 
 |===
 
-
-[.float-group]
---
-[.right.thumb]
-image::open-pom-file.png[]
-[start=6]
 6. Double-click on the model project's `pom.xml` file to open it in an editor.
 +
 WARNING: Make sure this file is the one at top-level in the model project, not the file of the same
 name in the newly created GenTarget folder (or in any other GenTarget folder).
 
 7. Click on the _Dependencies_ tab at the bottom of the editor, then click on the _Add..._ button.
---
-[.float-group]
---
-[.right.thumb]
-image::pom-dependency.png[]
-[start=8]
++
+image::open-pom-file.png[]
+
 8. Fill out the dialog as shown, then click _OK_. Values (for copy/paste) are:
 .. `org.openapitools`
 .. `openapi-generator`
 .. `3.2.3`
++
+image::pom-dependency.png[]
 
 9. Save and close the `pom.xml` editor.
---
 
-[start=10]
 10. Run the generator, by clicking on the big `Generate` button in the toolbar. (Since we've been
 actively editing the `.gen` file for the _Java Spring_ GenTarget, the menu should show that as
 the generator to run. If not, click instead on the small arrow to the right, and select
 _Spring Boot_ from the list of targets.)
 +
-[.thumb]
 image::generate-button.png[]
 
-[.float-group]
---
-[.right.thumb]
-image::import-maven.png[]
-[start=11]
 11. The prior step caused a new folder named `implementation` to appear in our model
 project. Normally, generated files are placed in a folder named `generated` in the GenTarget folder,
 but we changed that by editing the `relativeOutputDir` property in the `.gen` file.
@@ -226,7 +197,8 @@ Directory_ field, and the project should appear, already checked, in the _Projec
 _Finish_ to create the project.
 +
 A build of the new project will start immediately, and will probably take several seconds.
---
++
+image::import-maven.png[]
 
 === Phase 3 - Implement
 
@@ -236,50 +208,39 @@ implementation class, containing the business logic for our service.
 
 Follow these steps:
 
-[.float-group]
---
-[.right.thumb]
-image::pom-java8.png[]
-
 1. Modify the `pom.xml` file so that the project is built using Java 8. This is needed because we
 set the `java8` parameter to `false` in the `.gen` file. We did that to prevent generation of
 default methods in generated interfaces, but we really do want to build with  Java8.
 +
 Open the `pom.xml` file in the new `petstore-demo` project, and alter its `java.version` property
 value to `1.8`, then save the file.
---
++
+image::pom-java8.png[]
 
-[start=2]
 2. Now that we've modified the `pom.xml` file, we need to add it to the `.openapi.generator.ignore`
 file, so re-generation will leave our changes in place. The file has a format similar to git's
 `.gitignore` file.
 +
-[.float-group]
---
-[.right.thumb]
-image::unfilter-dot-files.png[]
 You probably won't see this file in project explorer, because by default, files with names starting
 with a dot are not shown. You can show them by opening the drop-down menu in the project explorer
 toolbar and selecting _Filters and Customization..._. Uncheck the *.resources* checkbox, and you
 should now see the `.openapi.generator.ignore` file.
-
++
+image::unfilter-dot-files.png[]
++
 Once you're able to see the file, open it and add `pom.xml` on a line by itself at the end.
-
++
 TIP: You may want to re-check the *.* resources* filter once you've made this change.
---
 
-[start=3]
 3. We need to update the project so that the pom file changes will take effect. Right-click on the project
 name, and select _Maven -> Update Project...`. Press _OK_ in the dialog that appears.
 +
-[.thumb]
 image::maven-update.png[]
 
 4. Create our implementation class. Start by right-clicking on the
 `com.reprezen.demo.springboot.api` package in the `src/main/java` folder, and select _New ->
 Class_. Name the class `PetsApiDelegateImpl`.
 +
-[.thumb]
 image::create-class.png[]
 
 
