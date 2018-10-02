@@ -194,7 +194,7 @@ image::pom-dependency.png[]
 .. `openapi-generator`
 .. `3.2.3`
 
-9. Save the `pom.xml` editor.
+9. Save and close the `pom.xml` editor.
 --
 
 [start=10]
@@ -259,7 +259,7 @@ file, so re-generation will leave our changes in place. The file has a format si
 [.right.thumb]
 image::unfilter-dot-files.png[]
 You probably won't see this file in project explorer, because by default, files with names starting
-with a dot are not shown. You can show htem by opening the drop-down menu in the project explorer
+with a dot are not shown. You can show them by opening the drop-down menu in the project explorer
 toolbar and selecting _Filters and Customization..._. Uncheck the *.resources* checkbox, and you
 should now see the `.openapi.generator.ignore` file.
 
@@ -283,7 +283,7 @@ Class_. Name the class `PetsApiDelegateImpl`.
 image::create-class.png[]
 
 
-5. Replace the text class definition with the following:
+5. Replace the text of the class definition with the following:
 +
 ```Java
 package com.reprezen.demo.springboot.api;
@@ -340,6 +340,10 @@ image::organize-imports.png[]
 * Choose `java.util.List` to resolve the `List` type.
 * All other types should be resolved automatically.
 
++
+Save the file once you're finished fixing the imports.
+
+
 7. Launch the service. Right-click on the `petstore-demo` project, and select _Run As -> Maven
 build..._. In the dialog that appears, type `spring-boot:run` in the _Goals_ field, and click
 _Run_.
@@ -361,7 +365,7 @@ Our service does not include any means to update an existing pet, other than del
 the pet - an option that will fail to retain the originally assigned pet id.
 
 We can fix this by adding a new PUT method. The operation will expect a pet id value as a path
-parameterd and the new pet data in the request payload. The effect will be to replace an existing
+parameter and the new pet data in the request payload. The effect will be to replace an existing
 pet record with that id.
 
 Our approach for this and future API changes is to iterate on the API CodeFlow *Design -> Generate
@@ -374,8 +378,11 @@ Open the `petstore-expanded.yaml` file in your model project, and add the new op
 definition to the `/pets/{id}` path item.
 
 You can copy and paste the following into the file immediately after the `/pets/{id}:` line. Be
-careful to maintain correct indentation; the method name `put` should be indented two to the right
-as compared to the `/pets/{id}` path string.
+careful to maintain correct indentation; the method name `put` should be indented two spaces to the
+right as compared to the `/pets/{id}` path string. Also, make sure the following `get` operation is
+still intact; it's easy for the pasted text to omit a final newline, which will result in `get`
+appearing at the end of the last line of the put operation definition - not cool. Break up the line
+and correct indentation as needed.
 
 ```
     put: 
@@ -407,6 +414,7 @@ as compared to the `/pets/{id}` path string.
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
 ```
 ==== Repeat:Generate
 
@@ -418,7 +426,7 @@ is not replaced (thanks to our listing it in the `.openapi-codegen-ignore` file)
 
 ==== Repeat:Implement
 
-At this point, looks fine in the GUI, except in fact there is a problem with the `petstore-demo`
+At this point, all looks fine in the GUI, except in fact there is a problem with the `petstore-demo`
 project. You can see this by selecting _Project -> Clean..._ in the toolbar, and clicking _Clean_ in
 the resulting dialog. This will cause the demo project to be rebuilt, and the result will be an
 error marker on the `PetsApiDelegateImpl` class.
@@ -441,7 +449,7 @@ public ResponseEntity<Pet> updatePet(Long id, NewPet newPet) {
 }
 ```
 
-You can now restart the service. Mmake sure to stop the previous launch first, by clicking on the red
+You can now restart the service. Make sure to stop the previous launch first, by clicking on the red
 *Terminate* button in the _Console_ view's toolbar. When you reload the Swagger-UI page, you'll find
 that your PUT method is now available, along with the others.
 
