@@ -58,13 +58,6 @@ If you're already an Eclipse IDE user, you
 may want to consider installing API Studio from Eclipse Marketplace, rather than using the
 stand-alone installer offered in the sign-up process. Installation options are explained https://support.reprezen.com/support/solutions/articles/24000009587-reprezen-api-studio-installation-options-desktop-and-eclipse-ide-[here^].
 
-Your final setup step, if you haven't done it already, is to clone this project to a local working
-directory on your machine.
-
-```
-git clone git@github.com:RepreZen/API-CodeFlow-Node.js.git
-```
-
 === Phase 1 - Design
 
 We won't actually design a model here. Instead, we'll just use one of the OpenApi3 models available from the API Studio Examples Wizard.
