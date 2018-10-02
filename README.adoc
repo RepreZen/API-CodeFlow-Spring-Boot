@@ -1,0 +1,474 @@
+= Spring Boot Example
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:toc:
+:toc-placement!:
+:linkattrs:
+:imagesdir: ./images
+
+image::API-CodeFlow-Logo-1024w.png[API CodeFlow Logo,35%]
+
+This project serves as a demo for an http://rzen.io/APICodeFlow[API CodeFlow^] approach to API
+service implementation. This entails the following three steps,
+repeated as the API evolves:
+
+1. **Design** your API in https://github.com/OAI/OpenAPI-Specification[OpenApi^].
+2. **Generate** stub code in Java using the https://spring.io/projects/spring-boot[Spring Boot framework^].
+3. **Implement** your business logic.
+
+This demo will create a working API to manage a database of live pets for a pet store. The API will
+support adding a new pet, updating an existing pet, deleting a pet, listing all pets, and showing
+the pet with a given ID.
+
+toc::[]
+
+== Working Through the Demo
+
+=== Overview
+
+The demo proceeds in four phases (plus some initial set-up). There are branches defined for each
+phase, which you can use to quickly bring your workspace up to that point of the demo, rather than
+manually working through each step.
+
+[TIP]
+====
+If you have checked out a branch and then worked through some following steps manually, you will probably have files in your working tree that will block an attempt
+to simply check out the next branch. To proceed, clean out your working tree with:
+
+```
+git clean -fd
+```
+
+If you have also modified non-ignored files, you will also need to do this:
+
+```
+git reset . ; git checkout .
+```
+
+====
+
+The phases are:
+
+[start=0]
+0. Setup - install and launch RepreZen API Studio.
+
+1. **Design** - Create one of the standard OpenAPI v3 example models available in RepreZen API Studio.
+
+2. **Generate** - Use one of the available code generators to generate a new server for the API,
+using Spring Boot.
+
+3. **Implement** - Write your business logic into the generated stubs.
+
+4. Iterate (**Design** => **Generate** => **Implement**) in order to add a new method to the API
+
+So let's get going!
+
+=== Phase 0 - Setup
+
+If you don't already have RepreZen API Studio installed, you'll want to visit
+https://www.reprezen.com[the RepreZen website^] and sign up for a free trial.
+If you're already an Eclipse IDE user, you
+may want to consider installing API Studio from Eclipse Marketplace, rather than using the
+stand-alone installer offered in the sign-up process. Installation options are explained https://support.reprezen.com/support/solutions/articles/24000009587-reprezen-api-studio-installation-options-desktop-and-eclipse-ide-[here^].
+
+Your final setup step, if you haven't done it already, is to clone this project to a local working
+directory on your machine.
+
+```
+git clone git@github.com:RepreZen/API-CodeFlow-Node.js.git
+```
+
+=== Phase 1 - Design
+
+TIP: The end-state of this phase is captured in branch `02.petstore`.
+
+We won't actually design a model here. Instead, we'll just use one of the OpenApi3 models available from the API Studio Examples Wizard.
+
+Follow these steps:
+
+[.float-group]
+--
+[.right.thumb]
+image::examples-wizard.png[Open the Examples Wizard]
+1. Click on the drop-down arrow of the _New_ tool in the toolbar, just under the _File_ menu.
+
+2. Select _RepreZen Examples_ to open the Examples Wizard.
+--
+
+[.float-group]
+--
+[.right.thumb]
+image::petstore-example.png[Expanded Pet Store Example]
+[start=3]
+3. Click on the _OpenAPI v3_ tab.
+
+4. Select the _Expanded Pet Store (v3)_ example, and press _Finish_.
+--
+
+[start=5]
+5. You should see a new project in your workspace, and the example model file itself will automatically open in an editor.
+
+6. Browse through the model briefly to familiarize yourself with its operations and other components.
+
+
+=== Phase 2 - Generate
+
+We'll make use of one of the built-in API Studio GenTemplates to create our server
+implementation. This GenTemplate is one of dozens that are adapted for use in API Studio from the
+https://github.com/OpenAPITools/openapi-generator[OpenAPI Generator^] open-source project.
+
+TIP: We need to use a later version of the OpenAPI Generator library than is packaged with API
+Studio at the time of this writing. Steps 6-9 below accomplish this.
+
+Follow these steps:
+
+[.float-group]
+--
+[.right.thumb]
+image::create-gentarget.png[Create GenTarget]
+
+1. In your model project, locate the `petstore-expanded.yaml` file in the `models` folder, and
+double-click on it.
+
+2. Click on the _Create a New GenTarget_ button in the toolbar, just to the left of the _Generate_
+button/menu.
++
+TIP: If you do not see this in the toolbar, be sure that you are in the **RepreZen** perspective, by
+clicking on the appropriate button on the far right of the toolbar: image:reprezen-perspective.png[].
+--
+
+[.float-group]
+--
+[.right.thumb]
+image::select-gentemplate.png[]
+[start=3]
+3. Type "spring" in the resulting dialog's search box, and you should see the **Java Spring
+(Boot...)** GenTemplate in the list.
+
+4. Select the **Java Spring** GenTemplate and press _Finish_. A new GenTarget is created in your
+project, and the `.gen` file that describes it opens in an editor.
+--
+
+[start=5]
+5. Modify the new `.gen` file (which should be showing now in your active editor) as shown in the
+following table. You can copy/paste directly from this table into the `.gen` file.
+[none]
++
+[cols="30m,70m"]
+|===
+h|{set:cellbgcolor:white}
+Parameter Name
+h|{set:cellbgcolor:white}Value
+{set:cellbgcolor:white}
+2+^e|Output Location and Packages
+{set:cellbgcolor:white}|relativeOutputDir|../../../implementation/springboot-petstore-demo
+{set:cellbgcolor:white}|modelPackage|com.reprezen.demo.springboot.model
+{set:cellbgcolor:white}|apiPackage|com.reprezen.demo.springboot.api
+{set:cellbgcolor:white}|invokerPackage|com.reprezen.demo.springboot
+{set:cellbgcolor:white}|configPackage|com.reprezen.demo.springboot.swaggerui
+{set:cellbgcolor:white}|basePackage|com.reprezen.demo.springboot
+{set:cellbgcolor:white}
+2+^e|Maven Artifacts
+{set:cellbgcolor:white}|groupId|com.reprezen.demo
+{set:cellbgcolor:white}|artifactId|petstore-demo
+{set:cellbgcolor:white}|artifactDescription|Demontration of API CodeFlow with Spring Boot generated from an OpenAPI3 doc
+{set:cellbgcolor:white}
+2+^e|Generated Java Classes
+{set:cellbgcolor:white}|openApiCodegenConfig
+a|
+```
+openApiCodegenConfig:
+  hideGenerationTimestamp: true
+  delegatePattern: true
+  # the java8 option generates default methods in interfaces.
+  # This means that omitting a required  method in an
+  # implementation class does not cause an error to be flagged.
+  # This reduces the effectiveneses of the API CodeFlow process.
+  java8: false
+```
+
+TIP: This value is a YAML object.  In order to clarify how the value should appear in the .gen file,
+we have included the property name with the vaule. That name, `openApiCodegenConfig`, is _not_ part
+of the value.
+
+|===
+
+
+[.float-group]
+--
+[.right.thumb]
+image::open-pom-file.png[]
+[start=6]
+6. Double-click on the model project's `pom.xml` file to open it in an editor.
++
+WARNING: Make sure this file is the one at top-level in the model project, not the file of the same
+name in the newly created GenTarget folder (or in any other GenTarget folder).
+
+7. Click on the _Dependencies_ tab at the bottom of the editor, then click on the _Add..._ button.
+--
+[.float-group]
+--
+[.right.thumb]
+image::pom-dependency.png[]
+[start=8]
+8. Fill out the dialog as shown, then click _OK_. Values (for copy/paste) are:
+.. `org.openapitools`
+.. `openapi-generator`
+.. `3.2.3`
+
+9. Save the `pom.xml` editor.
+--
+
+[start=10]
+10. Run the generator, by clicking on the big `Generate` button in the toolbar. (Since we've been
+actively editing the `.gen` file for the _Java Spring_ GenTarget, the menu should show that as
+the generator to run. If not, click instead on the small arrow to the right, and select
+_Spring Boot_ from the list of targets.)
++
+[.thumb]
+image::generate-button.png[]
+
+[.float-group]
+--
+[.right.thumb]
+image::import-maven.png[]
+[start=11]
+11. The prior step caused a new folder named `implementation` to appear in our model
+project. Normally, generated files are placed in a folder named `generated` in the GenTarget folder,
+but we changed that by editing the `relativeOutputDir` property in the `.gen` file.
++
+We will now turn that `implementation` folder into a Java project in its own right. We can do that
+easily because the generator created a Maven `pom.xml` file in the output directory.
++
+Right-click on the `implementation` folder and select _Import..._, then select _Maven / Existing
+Maven Projects_ in the resulting dialog, and press _Next_.
++
+You should see your implementation folder in the _Root
+Directory_ field, and the project should appear, already checked, in the _Projects_ list. Click
+_Finish_ to create the project.
++
+A build of the new project will start immediately, and will probably take several seconds.
+--
+
+=== Phase 3 - Implement
+
+One of the generated class is an interface named `PetsApiDelegate`, in the
+`com.reprezen.demo.springboot.api` package. In the next phase we will create a corresponding
+implementation class, containing the business logic for our service.
+
+Follow these steps:
+
+[.float-group]
+--
+[.right.thumb]
+image::pom-java8.png[]
+
+1. Modify the `pom.xml` file so that the project is built using Java 8. This is needed because we
+set the `java8` parameter to `false` in the `.gen` file. We did that to prevent generation of
+default methods in generated interfaces, but we really do want to build with  Java8.
++
+Open the `pom.xml` file in the new `petstore-demo` project, and alter its `java.version` property
+value to `1.8`, then save the file.
+--
+
+[start=2]
+2. Now that we've modified the `pom.xml` file, we need to add it to the `.openapi.generator.ignore`
+file, so re-generation will leave our changes in place. The file has a format similar to git's
+`.gitignore` file.
++
+[.float-group]
+--
+[.right.thumb]
+image::unfilter-dot-files.png[]
+You probably won't see this file in project explorer, because by default, files with names starting
+with a dot are not shown. You can show htem by opening the drop-down menu in the project explorer
+toolbar and selecting _Filters and Customization..._. Uncheck the *.resources* checkbox, and you
+should now see the `.openapi.generator.ignore` file.
+
+Once you're able to see the file, open it and add `pom.xml` on a line by itself at the end.
+
+TIP: You may want to re-check the *.* resources* filter once you've made this change.
+--
+
+[start=3]
+3. We need to update the project so that the pom file changes will take effect. Right-click on the project
+name, and select _Maven -> Update Project...`. Press _OK_ in the dialog that appears.
++
+[.thumb]
+image::maven-update.png[]
+
+4. Create our implementation class. Start by right-clicking on the
+`com.reprezen.demo.springboot.api` package in the `src/main/java` folder, and select _New ->
+Class_. Name the class `PetsApiDelegateImpl`.
++
+[.thumb]
+image::create-class.png[]
+
+
+5. Replace the text class definition with the following:
++
+```Java
+package com.reprezen.demo.springboot.api;
+
+@Service
+public class PetsApiDelegateImpl implements PetsApiDelegate {
+ 	private final Map<Long, Pet> pets = Maps.newHashMap();
+	private long nextId = 0l;
+ 	@Override
+	public ResponseEntity<Pet> addPet(NewPet newPet) {
+		Pet petToAdd = new Pet();
+		petToAdd.id(nextId++).name(newPet.getName()).tag(newPet.getTag());
+		pets.put(petToAdd.getId(), petToAdd);
+		return new ResponseEntity<>(petToAdd, HttpStatus.CREATED);
+	}
+ 	@Override
+	public ResponseEntity<Void> deletePet(Long id) {
+		if (!pets.containsKey(id)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		pets.remove(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+ 	@Override
+	public ResponseEntity<Pet> findPetById(Long id) {
+		if (!pets.containsKey(id)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(pets.get(id), HttpStatus.ACCEPTED);
+	}
+ 	@Override
+	public ResponseEntity<List<Pet>> findPets(List<String> tags, Integer limitObject) {
+		int limit = limitObject == null ? Integer.MAX_VALUE : limitObject;
+		List<Pet> filteredPets = pets.values().stream()//
+				.filter(pet -> (tags == null || tags.isEmpty()) ? true : tags.contains(pet.getTag()))//
+				.limit(limit)//
+				.collect(Collectors.toList());
+		return new ResponseEntity<>(filteredPets, HttpStatus.ACCEPTED);
+	}
+ }
+```
++
+TIP: We are using a simple `HashMap` to keep track of our pets. A real-life implementation would
+presumably make use of a production database.
++
+Don't freak out at all the red error markers! :-)
+
+6. Add missing imports. Right-click in the editor and select _Source -> Organize Imports_.
++
+[.thumb]
+image::organize-imports.png[]
+
+* Choose `com.google.common.collect.Maps` to resolve the `Maps` type.
+* Choose `java.util.List` to resolve the `List` type.
+* All other types should be resolved automatically.
+
+7. Launch the service. Right-click on the `petstore-demo` project, and select _Run As -> Maven
+build..._. In the dialog that appears, type `spring-boot:run` in the _Goals_ field, and click
+_Run_.
++
+[.thumb]
+image::run-service.png[]
+
+8. Exercise the service using Swagger-UI, by visiting http://localhost:8080/[^]. If you open the
+`pets-api-controller` menu you'll see all the operations defined in the model. Click on any one of
+them and click the _Try it out_ button to get an HTML form that you can use to actually send a
+request to the running service.
++
+[.thumb]
+image::swagger-ui.png[]
+
+=== Phase 4 - Repeat
+
+Our service does not include any means to update an existing pet, other than deleting and recreating
+the pet - an option that will fail to retain the originally assigned pet id.
+
+We can fix this by adding a new PUT method. The operation will expect a pet id value as a path
+parameterd and the new pet data in the request payload. The effect will be to replace an existing
+pet record with that id.
+
+Our approach for this and future API changes is to iterate on the API CodeFlow *Design -> Generate
+-> Implement* cycle.
+
+==== Repeat:Design
+
+
+Open the `petstore-expanded.yaml` file in your model project, and add the new operation
+definition to the `/pets/{id}` path item.
+
+You can copy and paste the following into the file immediately after the `/pets/{id}:` line. Be
+careful to maintain correct indentation; the method name `put` should be indented two to the right
+as compared to the `/pets/{id}` path string.
+
+```
+    put: 
+      description: Update a pet based on the ID
+      operationId: updatePet
+      requestBody:
+        content: 
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/NewPet"
+      parameters:
+        - name: id
+          in: path
+          description: ID of pet to fetch
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: pet response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+```
+==== Repeat:Generate
+
+Here we just re-run the `Spring Boot` GenTarget by pressing the big `Generate` button again.
+
+Updated source files, reflecting the new PUT method, will replace most of the existing files in the
+`petstore-demo` project. Our implementation class is not removed, and our customized `pom.xml` file
+is not replaced (thanks to our listing it in the `.openapi-codegen-ignore` file).
+
+==== Repeat:Implement
+
+At this point, looks fine in the GUI, except in fact there is a problem with the `petstore-demo`
+project. You can see this by selecting _Project -> Clean..._ in the toolbar, and clicking _Clean_ in
+the resulting dialog. This will cause the demo project to be rebuilt, and the result will be an
+error marker on the `PetsApiDelegateImpl` class.
+
+This is not surprising, because the interface implemented by that class now declares a method,
+`updatePet(Long, NewPet)`, that we never implemented. So of course, we now need to implement that
+method.
+
+Open the `PetsApiDelegateImpl` class, and add the following method definition to the class, then
+save the file. An automatic rebuild will then clear the error marker.
+
+```Java
+@Override
+public ResponseEntity<Pet> updatePet(Long id, NewPet newPet) {
+	if (!pets.containsKey(id)) {
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	pets.get(id).name(newPet.getName()).tag(newPet.getTag());
+	return new ResponseEntity<>(pets.get(id), HttpStatus.ACCEPTED);
+}
+```
+
+You can now restart the service. Mmake sure to stop the previous launch first, by clicking on the red
+*Terminate* button in the _Console_ view's toolbar. When you reload the Swagger-UI page, you'll find
+that your PUT method is now available, along with the others.
+
